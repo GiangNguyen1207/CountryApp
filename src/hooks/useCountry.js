@@ -14,6 +14,7 @@ const useCountry = (input, sortValue, isSorted) => {
         setCountryList(data)
       } catch (err) {
         setError(err)
+        console.log(error)
       }
     }; fetchData()
   }, [])

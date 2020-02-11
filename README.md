@@ -1,30 +1,68 @@
-# React assignment
-Work individually to finish this assignment. You can ask for help from your pair mate, other class mates or instructors
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Assignment 1
-Convert the personal porfolio Website that you've done as previous assignments into a React-based Web app using [create-react-app](https://github.com/facebook/create-react-app)
+## Available Scripts
 
-* It has to look good (because you may use it as your personal Website after the course).
-* It has to be responsive with a mobile menu (the harmburger menu).
-* Preferrably using the CSS/SASS styles (since it'll be easier to customize the look-and-feel of the site - remember it's your personal Website, not a company Web app) that you've already written but if you want to use it with React-Boostrap or Material-UI, you can also use it.
-* Use as much stateless functional components as you can.
-* Use components folder structure for a large app (e.g, each component has its own folder).
-* Use ESLint (ask Google how to do that with `create-react-app`)
+In the project directory, you can run:
 
-When done (or even not done but you want to have a review), make a PR to upstream, tag pair mate & instructors as reviewers.
+### `npm start`
 
-## Assignment 2
-Write a custom hook that does:
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-* Given a country name (international or native), returns a country object from [countries APIs](https://restcountries.eu/). You may use caching for better performance.
-* The example usage of the hook is like this:
-```
-const [error, country] = useCountry('Suomi')
-```
-* Convert that hook into a HoC
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-## Assignment 3
-Convert any of your existing React apps:
+### `npm test`
 
-* Use functional components instead of class components
-* Use hooks, HoC, render props if you can
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

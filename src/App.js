@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 
-import SearchInput from './components/SearchBar';
-import Table from './components/Table';
-import useCountry from './components/hooks/useCountry.js'
+import SearchInput from './components/SearchBar'
+import CountryTable from './components/CountryTable'
+import useCountry from './hooks/useCountry'
 
 function App() {
   const [input, setInput] = useState('')
@@ -20,19 +20,19 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <>
       <SearchInput 
         input={input}
         handler={searchHanlder}
       /> 
-      <Table 
+      <CountryTable 
         countryList={filterCountries} 
         handleSort={handleSort}
         isSorted={isSorted}
         sortValue={sortValue}
       />
-    </div>
-  );
+    </>
+  )
 }
 
-export default App;
+export default App

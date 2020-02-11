@@ -14,8 +14,8 @@ const Flag = ({ link, name }) => {
 
 Flag.displayName = 'Flag'
 Flag.propTypes = {
-    link: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 }
 
 export default Flag

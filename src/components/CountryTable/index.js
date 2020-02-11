@@ -1,23 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Table from '@material-ui/core/Table'
+import TableHead from '@material-ui/core/TableHead'
+import TableBody from '@material-ui/core/TableBody'
 
-import TableHead from '../TableHead'
-import TableRow from '../TableRow'
-import './table.css'
+import TableHeader from '../TableHeader'
+import TableRows from '../TableRows'
 
-const Table = ({ countryList, handleSort, isSorted, sortValue }) => {
+const CountryTable = ({ countryList, handleSort, isSorted, sortValue }) => {
   return(
-    <table>
-      <thead>
-        <TableHead 
-          handleSort= {handleSort}
+    <Table>
+      <TableHead>
+        <TableHeader
+          handleSort={handleSort}
           isSorted={isSorted}
           sortValue={sortValue}
         />
-      </thead>
-      <tbody>
+      </TableHead>
+      <TableBody>
         {countryList.map(country => {
-          return <TableRow 
+          return <TableRows
             key = {country.name}
             name = {country.name}
             link = {country.flag}
@@ -25,17 +27,17 @@ const Table = ({ countryList, handleSort, isSorted, sortValue }) => {
             population = {country.population}
             region = {country.region}/>
         })}
-      </tbody>
-    </table>
+      </TableBody>
+    </Table>
   )
 }
 
-Table.displayName = 'Table'
-Table.propTypes = {
+CountryTable.displayName = 'CountryTable'
+CountryTable.propTypes = {
   countryList: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleSort: PropTypes.func,
   isSorted: PropTypes.bool,
   sortValue: PropTypes.string
 }
 
-export default Table
+export default CountryTable
