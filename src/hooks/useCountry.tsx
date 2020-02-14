@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import _orderBy from 'lodash/orderBy'
 
-const useCountry = (input, sortValue, isSorted) => {
-  const [countryList, setCountryList] = useState([])
+import { Country } from '../type'
+
+const useCountry = (input: string, sortValue: string, isSorted: boolean) => {
+  const [countryList, setCountryList] = useState<Country[]>([])
   const [error, setError] = useState(null)
-  const [filterCountries, setFilterCountries] = useState([])
+  const [filterCountries, setFilterCountries] = useState<Country[]>([])
 
   useEffect(() => {
     const fetchData = async() => {
@@ -16,7 +18,8 @@ const useCountry = (input, sortValue, isSorted) => {
         setError(err)
         console.log(error)
       }
-    }; fetchData()
+    }; 
+    fetchData()
   }, [])
 
   useEffect(() => {

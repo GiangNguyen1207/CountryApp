@@ -2,30 +2,41 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
-import { withStyles } from '@material-ui/core/styles'
-
+import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
+import { Language } from '../../type'
 import Flag from '../Flag'
 
-const StyledTableCell = withStyles(theme => ({
-  head: {
-    backgroundColor: theme.palette.info.light,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell)
+type Props = {
+  name: string,
+  link: string,
+  languages: Language[],
+  population: number,
+  region: string
+}
 
-const StyledTableRow = withStyles(theme => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.grey[200],
+const StyledTableCell = withStyles((theme: Theme) =>
+  createStyles({
+    head: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
     },
-  },
-}))(TableRow)
+    body: {
+      fontSize: 14,
+    },
+  }),
+)(TableCell);
 
+const StyledTableRow = withStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: theme.palette.background.default,
+      },
+    },
+  }),
+)(TableRow);
 
-const TableRows = ({ name, link, languages, population, region }) => {
+const TableRows = ({ name, link, languages, population, region }: Props) => {
   return(
     <StyledTableRow>
       <StyledTableCell>
@@ -54,7 +65,7 @@ TableRows.propTypes = {
   name: PropTypes.string,
   link: PropTypes.string,
   languages: PropTypes.arrayOf(PropTypes.object),
-  population: PropTypes.string,
+  population: PropTypes.number,
   region: PropTypes.string,
 }
 

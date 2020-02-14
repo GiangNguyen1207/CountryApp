@@ -10,11 +10,10 @@ function App() {
   const [isSorted, setIsSorted] = useState(true)
   const {filterCountries} = useCountry(input, sortValue, isSorted)
 
-  const searchHanlder = (event) => {
-    setInput(event.target.value)
-  }
+  const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) : void => {
+    setInput(event.target.value)}
 
-  const handleSort = (value) => {
+  const handleSort = (value: string) => {
     setIsSorted(!isSorted)
     setSortValue(value)
   }
@@ -23,7 +22,7 @@ function App() {
     <>
       <SearchInput 
         input={input}
-        handler={searchHanlder}
+        handler={searchHandler}
       /> 
       <CountryTable 
         countryList={filterCountries} 

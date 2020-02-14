@@ -1,17 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import TextField from '@material-ui/core/TextField'
-import { makeStyles } from '@material-ui/core/styles'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    margin: theme.spacing(1),
-    width: '50%',
-    padding: '10px 0',
-  },
-}))
+type Props = {
+  input: string,
+  handler: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
 
-const SearchInput = ({ input, handler }) => {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      margin: theme.spacing(1),
+      width: '50%',
+      padding: '10px 0',
+      },
+  }),
+);
+
+const SearchInput = ({ input, handler }: Props) => {
   const classes = useStyles()
   return (
     <>

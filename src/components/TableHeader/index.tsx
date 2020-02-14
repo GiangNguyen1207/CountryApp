@@ -1,10 +1,16 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import PropTypes, { bool } from 'prop-types'
 import TableRow from '@material-ui/core/TableRow'
 import TableCell from '@material-ui/core/TableCell'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import { withStyles, makeStyles } from '@material-ui/core/styles'
+
+type Props = {
+  handleSort: Function,
+  isSorted: boolean, 
+  sortValue: string
+}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,7 +31,7 @@ const StyledTableCell = withStyles(theme => ({
   },
 }))(TableCell)
 
-const TableHeader = ({ handleSort, isSorted, sortValue }) => {
+const TableHeader = ({ handleSort, isSorted, sortValue } : Props) => {
   const clases = useStyles()
   const tableHeader = ['Flag', 'Name', 'Languages', 'Population', 'Region']
 

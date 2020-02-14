@@ -1,7 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Flag = ({ link, name }) => {
+type Props = {
+  link: string,
+  name: string
+}
+
+const Flag = ({ link, name }: Props) => {
   return (
     <img
       src={link}
