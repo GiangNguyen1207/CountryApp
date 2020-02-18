@@ -1,35 +1,24 @@
 import React, {useState} from 'react'
-
-import SearchInput from './components/SearchBar'
-import CountryTable from './components/CountryTable'
-import useCountry from './hooks/useCountry'
+import ThemeContext, { themes } from './Context';
+import Routes from './pages/Routes'
 
 function App() {
-  const [input, setInput] = useState('')
-  const [sortValue, setSortValue] = useState('')
-  const [isSorted, setIsSorted] = useState(true)
-  const {filterCountries} = useCountry(input, sortValue, isSorted)
-
-  const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) : void => {
-    setInput(event.target.value)}
-
-  const handleSort = (value: string) => {
-    setIsSorted(!isSorted)
-    setSortValue(value)
-  }
+  const [context, setContext] = useState({
+    theme: themes.blue,
+    switchTheme: () => {
+      setContext(current => ({
+        ...current,
+        theme: current.theme === themes.blue? themes.green : themes.blue
+      }))
+    }
+    }
+  )
 
   return (
     <>
-      <SearchInput 
-        input={input}
-        handler={searchHandler}
-      /> 
-      <CountryTable 
-        countryList={filterCountries} 
-        handleSort={handleSort}
-        isSorted={isSorted}
-        sortValue={sortValue}
-      />
+      <ThemeContext.Provider value={context}>
+        <Routes />
+      </ThemeContext.Provider>
     </>
   )
 }

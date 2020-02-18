@@ -1,62 +1,73 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import PropTypes from 'prop-types'
-import TableRow from '@material-ui/core/TableRow'
-import TableCell from '@material-ui/core/TableCell'
-import { withStyles, Theme, createStyles, makeStyles } from '@material-ui/core/styles';
-import { Language } from '../../type'
+import { useDispatch, useSelector } from 'react-redux'
+import Button from '@material-ui/core/Button';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+
+import { Country, Language, AppState } from '../../type'
 import Flag from '../Flag'
+import { addCountryToCart } from '../../redux/actions/Cart'
+import ThemeContext from '../../Context'
 
 type Props = {
   name: string,
   link: string,
   languages: Language[],
   population: number,
-  region: string
+  region: string,
+  nameDetails: string,
+  takeName: (nameDetails: string) => void
 }
 
-const StyledTableCell = withStyles((theme: Theme) =>
-  createStyles({
-    head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
-    },
-    body: {
-      fontSize: 14,
-    },
-  }),
-)(TableCell);
+const TableRows = ({ name, link, languages, population, region, takeName, nameDetails }: Props) => {
+  const { theme } = useContext(ThemeContext)
+  const dispatch = useDispatch()
 
-const StyledTableRow = withStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.background.default,
-      },
-    },
-  }),
-)(TableRow);
+  const handleAdd = () => {
+    const country: Country = {
+      flag: link,
+      name: name,
+      languages: languages,
+      population: population,
+      region: region
+    }
+    dispatch(addCountryToCart(country))
+  }
 
-const TableRows = ({ name, link, languages, population, region }: Props) => {
+  const addedCountries = useSelector((state: AppState) => state.cart.countryCart)
+  const existed = addedCountries.some(item => item.name === name)
+
   return(
-    <StyledTableRow>
-      <StyledTableCell>
+    <TableRow>
+      <TableCell>
         <Flag 
           link={link}
           name={name}
         />
-      </StyledTableCell>
-      <StyledTableCell>{name}</StyledTableCell>
-      <StyledTableCell>{languages.map(lang => {
+      </TableCell>
+      <TableCell onClick={()=>takeName(name)}>{name}</TableCell>
+      <TableCell>{languages.map(lang => {
         return(
           <li key={lang.name}>
             {lang.name}
           </li>
         )
       })}
-      </StyledTableCell>
-      <StyledTableCell>{population}</StyledTableCell>
-      <StyledTableCell>{region}</StyledTableCell>
-    </StyledTableRow>
+      </TableCell>
+      <TableCell>{population}</TableCell>
+      <TableCell>{region}</TableCell>
+      <TableCell>
+        <Button 
+          variant="contained" 
+          style={{backgroundColor: theme.forground}}
+          onClick={handleAdd}
+          disabled={existed}
+        >
+          Add
+        </Button> 
+      </TableCell>
+    </TableRow>
   )
 }
 
