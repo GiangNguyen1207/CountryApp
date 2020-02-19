@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import PropTypes from 'prop-types'
 import _orderBy from 'lodash/orderBy'
 import Table from '@material-ui/core/Table'
 import TableHead from '@material-ui/core/TableHead'
@@ -10,7 +9,6 @@ import fetchCountry from '../../redux/actions/Country'
 import TableHeader from '../TableHeader'
 import TableRows from '../TableRows'
 import { AppState } from '../../type'
-import './table.css'
 
 type Props = {
   input: string,
@@ -37,7 +35,7 @@ const CountryTable = ({ input, handleSort, isSorted, sortValue, takeName, nameDe
       isSorted ? 'asc' : 'desc')
 
   return(
-    <Table className='table'>
+    <Table>
       <TableHead>
         <TableHeader
           handleSort={handleSort}
@@ -61,13 +59,6 @@ const CountryTable = ({ input, handleSort, isSorted, sortValue, takeName, nameDe
       </TableBody>
     </Table>
   )} else return <div>loading</div>
-}
-
-CountryTable.displayName = 'CountryTable'
-CountryTable.propTypes = {
-  handleSort: PropTypes.func,
-  isSorted: PropTypes.bool,
-  sortValue: PropTypes.string
 }
 
 export default CountryTable

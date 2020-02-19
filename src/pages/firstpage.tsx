@@ -1,15 +1,15 @@
 import React, {useState} from 'react'
+import { useHistory } from 'react-router';
 
 import AppBarComponent from '../components/AppBar'
 import CountryTable from '../components/CountryTable';
-import { useHistory } from 'react-router';
 
 const Homepage = () => {
   const history = useHistory()
   const [input, setInput] = useState('')
   const [sortValue, setSortValue] = useState('')
   const [isSorted, setIsSorted] = useState(true)
-  const [ nameDetails, setnameDetails ] = useState()
+  const [nameDetails, setnameDetails] = useState()
 
   const searchHandler = (event: React.ChangeEvent<HTMLInputElement>) : void => {
     setInput(event.target.value)}
@@ -21,7 +21,7 @@ const Homepage = () => {
 
   const takeName = (name: string) => {
     setnameDetails(name)
-    history.push(`/products/${nameDetails}` )
+    history.push(`/products/${name}` )
   }
 
   return (

@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react'
-import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Button from '@material-ui/core/Button';
 import TableCell from '@material-ui/core/TableCell';
@@ -20,7 +19,7 @@ type Props = {
   takeName: (nameDetails: string) => void
 }
 
-const TableRows = ({ name, link, languages, population, region, takeName, nameDetails }: Props) => {
+const TableRows = ({ name, link, languages, population, region, takeName }: Props) => {
   const { theme } = useContext(ThemeContext)
   const dispatch = useDispatch()
 
@@ -36,6 +35,7 @@ const TableRows = ({ name, link, languages, population, region, takeName, nameDe
   }
 
   const addedCountries = useSelector((state: AppState) => state.cart.countryCart)
+  
   const existed = addedCountries.some(item => item.name === name)
 
   return(
@@ -46,7 +46,11 @@ const TableRows = ({ name, link, languages, population, region, takeName, nameDe
           name={name}
         />
       </TableCell>
-      <TableCell onClick={()=>takeName(name)}>{name}</TableCell>
+      <TableCell 
+        style={{cursor:'pointer'}} 
+        onClick={()=>takeName(name)}
+      >{name}
+      </TableCell>
       <TableCell>{languages.map(lang => {
         return(
           <li key={lang.name}>
@@ -60,7 +64,7 @@ const TableRows = ({ name, link, languages, population, region, takeName, nameDe
       <TableCell>
         <Button 
           variant="contained" 
-          style={{backgroundColor: theme.forground}}
+          style={{backgroundColor: theme.forground, color: theme.color}}
           onClick={handleAdd}
           disabled={existed}
         >
@@ -69,15 +73,6 @@ const TableRows = ({ name, link, languages, population, region, takeName, nameDe
       </TableCell>
     </TableRow>
   )
-}
-
-TableRows.displayName = 'TableRows'
-TableRows.propTypes = {
-  name: PropTypes.string,
-  link: PropTypes.string,
-  languages: PropTypes.arrayOf(PropTypes.object),
-  population: PropTypes.number,
-  region: PropTypes.string,
 }
 
 export default TableRows

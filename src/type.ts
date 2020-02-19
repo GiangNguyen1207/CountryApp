@@ -1,9 +1,9 @@
-export const ADD_COUNTRY = 'AddCountry'
-export const REMOVE_COUNTRY = 'RemoveCountry'
-export const FETCH_DATA_BEGIN = 'FetchDataBegin'
-export const FETCH_DATA_SUCCESS = 'FetchDataSuccess'
-export const FETCH_DATA_FAILURE = 'FetchDataFailure'
-export const TOGGLE_DRAWER = 'ToggleDrawer'
+export const ADD_COUNTRY = 'AddCountry';
+export const REMOVE_COUNTRY = 'RemoveCountry';
+export const FETCH_DATA_BEGIN = 'FetchDataBegin';
+export const FETCH_DATA_SUCCESS = 'FetchDataSuccess';
+export const FETCH_DATA_FAILURE = 'FetchDataFailure';
+export const TOGGLE_DRAWER = 'ToggleDrawer';
 
 export type Language = {
   name: string
@@ -80,4 +80,9 @@ export type ToggleDrawer = {
   payload: {
     isOpen: boolean
   }
+}
+
+export type Theme = {
+  forground: string,
+  color: string
 }

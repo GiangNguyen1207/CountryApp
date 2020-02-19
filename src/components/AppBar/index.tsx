@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AppBar from '@material-ui/core/AppBar';
@@ -13,9 +14,8 @@ import _isEmpty from 'lodash/isEmpty'
 
 import SearchBar from '../SearchBar'
 import DrawerComponent from '../Drawer'
-import { useDispatch, useSelector } from 'react-redux';
 import { AppState } from '../../type'
-import ThemeContext from '../../Context/';
+import ThemeContext, { themes } from '../../Context/';
 import { toggleDrawerAction } from '../../redux/actions/Cart'
 
 type SearchProps = {
@@ -67,18 +67,18 @@ const AppBarComponent = ({ input, handler } : SearchProps) => {
   const { theme, switchTheme } = useContext(ThemeContext)
 
   const quantity = useSelector((state: AppState) => state.cart.quantity)
-  const localStatequan = localStorage.getItem('cart')
-  let abc 
-  if(!_isEmpty(localStatequan)) {
-    let xyz = JSON.parse(localStatequan || '')
-    abc = xyz.quantity
+
+  const localState = localStorage.getItem('cart')
+
+  let newQuantity: number
+  if(!_isEmpty(localState)) {
+    let data = JSON.parse(localState || '')
+    newQuantity = data.quantity
   } else {
-    abc = quantity
+    newQuantity = quantity
   }
 
   const drawerStatus = useSelector((state: AppState) => state.cart.isOpen)
-
-  console.log(drawerStatus)
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
 
@@ -110,12 +110,12 @@ const AppBarComponent = ({ input, handler } : SearchProps) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            {['Red', 'Blue', 'Green'].map(color => {
+            {['Blue', 'Green', 'Red'].map(color => {
               return(
               <MenuItem 
                 style={{backgroundColor: color, color: 'white'}}
                 key={color} 
-                onClick={switchTheme}
+                onClick={()=>switchTheme(color)}
               >{color}
               </MenuItem>
               )
@@ -132,7 +132,7 @@ const AppBarComponent = ({ input, handler } : SearchProps) => {
         </div>
         <div className={classes.grow} />
         <IconButton color='inherit' edge="end">
-          <Badge badgeContent={abc} color="secondary">
+          <Badge badgeContent={newQuantity} color="secondary">
             <ShoppingCartIcon onClick={() => dispatch(toggleDrawerAction(true))}/>
           </Badge>
         </IconButton>

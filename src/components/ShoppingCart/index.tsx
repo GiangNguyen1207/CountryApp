@@ -11,22 +11,24 @@ import { AppState, Country } from '../../type'
 
 const ShoppingCart = () => {
   const dispatch = useDispatch()
+
   const countries = useSelector((state: AppState) => state.cart.countryCart)
 
   const localState = localStorage.getItem('cart')
-  let xyz: Country[]
+
+  let countryList: Country[]
   if (!_isEmpty(localState)) {
-    const abc = JSON.parse(localState || '')
-    xyz = abc.countryCart
+    const localData = JSON.parse(localState || '')
+    countryList = localData.countryCart
   } else {
-    xyz = countries
+    countryList = countries
   }
 
   return (
     <>
-      {countries.length <= 0 && <div>No products in cart</div> }
+      {countries.length <= 0 && <div>No products in cart</div>}
       <List>
-        {xyz.map(country => (
+        {countryList.map(country => (
           <ListItem key={country.name}>
             <img src={country.flag} width='40px' alt='countryFlag' />
             {country.name} 

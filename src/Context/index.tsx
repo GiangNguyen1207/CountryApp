@@ -1,23 +1,21 @@
 import React from 'react'
-import { red, blue, green } from '@material-ui/core/colors'
-import { white, black } from 'color-name';
 
 export const themes = {
   blue: {
-    forground: blue[500],
-    color: white
+    forground: '#2196f3',
+    color: '#ffffff'
   },
   green: {
-    forground: green[500],
-    color: black
+    forground: '#4caf50',
+    color: '#000000'
   },
   red: {
-    forground: red[500],
-    color: white
+    forground: '#f44336',
+    color: '#ffffff'
   }
 }
 
 export default React.createContext({
   theme: themes.blue,
-  switchTheme: () => {}
+  switchTheme: (color: string) => {}
 })

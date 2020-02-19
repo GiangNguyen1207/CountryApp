@@ -3,7 +3,11 @@
         "browser": true,
         "es6": true
     },
-    "extends": ["react-app", "plugin:jsx-a11y/recommended"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/eslint-recommended"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -11,19 +15,35 @@
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaFeatures": {
-            "jsx": true
+            "jsx": true,
+            "modules": true
         },
-        "ecmaVersion": 2018
+        "ecmaVersion": 2018,
+        "sourceType": "module"
     },
     "plugins": [
         "react",
-        "@typescript-eslint",
-        "jsx-a11y"
+        "@typescript-eslint"
     ],
     "rules": {
-      "indent": ["error", 2],
-      "no-unused-vars": ["error"],
-      "react/jsx-uses-react": "error",   
-      "react/jsx-uses-vars": "error"
+        "indent": [
+            "error",
+            2
+        ],
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "quotes": [
+            "error",
+            "single"
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-unused-vars": ["error"],
+        "react/jsx-uses-react": "error",   
+        "react/jsx-uses-vars": "error"
     }
 }
