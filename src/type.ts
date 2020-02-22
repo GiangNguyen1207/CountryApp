@@ -1,9 +1,10 @@
-export const ADD_COUNTRY = 'AddCountry';
-export const REMOVE_COUNTRY = 'RemoveCountry';
-export const FETCH_DATA_BEGIN = 'FetchDataBegin';
-export const FETCH_DATA_SUCCESS = 'FetchDataSuccess';
-export const FETCH_DATA_FAILURE = 'FetchDataFailure';
-export const TOGGLE_DRAWER = 'ToggleDrawer';
+export const ADD_COUNTRY = 'ADD_COUNTRY';
+export const REMOVE_COUNTRY = 'REMOVE_COUNTRY';
+export const FETCH_DATA_BEGIN = 'FETCH_DATA_BEGIN';
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
+export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
+export const TOGGLE_DRAWER = 'TOGGLE_DRAWER';
+export const SEND_TO_STORE = 'SEND_TO_STORE'
 
 export type Language = {
   name: string
@@ -35,6 +36,7 @@ export type CountryActions =
   | AddCountry
   | RemoveCountry
   | ToggleDrawer
+  | SendToStore
 
 export type FetchDataBegin = {
   type: typeof FETCH_DATA_BEGIN
@@ -66,7 +68,6 @@ export type ProductState = {
 
 export type CartState = {
   countryCart: Country[],
-  quantity: number,
   isOpen: boolean,
 } 
 
@@ -85,4 +86,11 @@ export type ToggleDrawer = {
 export type Theme = {
   forground: string,
   color: string
+}
+
+export type SendToStore = {
+  type: typeof SEND_TO_STORE
+  payload: {
+    countries: Country[]
+  }
 }

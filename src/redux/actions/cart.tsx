@@ -6,6 +6,7 @@ import {
   REMOVE_COUNTRY,
   ToggleDrawer,
   TOGGLE_DRAWER,
+  SEND_TO_STORE,
 } from '../../type'
 
 export function addCountryToCart(country: Country): AddCountry {
@@ -31,6 +32,15 @@ export function toggleDrawerAction(isOpen: boolean) : ToggleDrawer {
     type: TOGGLE_DRAWER,
     payload: {
       isOpen
+    }
+  }
+}
+
+export function sendLocalStorageToStore(countries: Country[]) {
+  return {
+    type: SEND_TO_STORE,
+    payload: {
+      countries
     }
   }
 }

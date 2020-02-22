@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -6,8 +6,8 @@ import ListItem from '@material-ui/core/ListItem';
 import List from '@material-ui/core/List';
 import _isEmpty from 'lodash/isEmpty'
 
-import { removeCountryFromCart } from '../../redux/actions/Cart';
-import { AppState, Country } from '../../type'
+import { removeCountryFromCart, sendLocalStorageToStore } from '../../redux/actions/cart';
+import { AppState } from '../../type'
 
 const ShoppingCart = () => {
   const dispatch = useDispatch()
@@ -16,19 +16,17 @@ const ShoppingCart = () => {
 
   const localState = localStorage.getItem('cart')
 
-  let countryList: Country[]
-  if (!_isEmpty(localState)) {
-    const localData = JSON.parse(localState || '')
-    countryList = localData.countryCart
-  } else {
-    countryList = countries
-  }
+  useEffect(() => {
+    if (!_isEmpty(localState)) {
+      const localData = JSON.parse(localState || '')
+      dispatch(sendLocalStorageToStore(localData.countryCart))
+    } 
+  }, [])
 
   return (
     <>
-      {countries.length <= 0 && <div>No products in cart</div>}
       <List>
-        {countryList.map(country => (
+        {countries.map(country => (
           <ListItem key={country.name}>
             <img src={country.flag} width='40px' alt='countryFlag' />
             {country.name} 

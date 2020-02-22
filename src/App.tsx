@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 import ThemeContext, { themes } from './Context';
-import Routes from './pages/Routes'
+import Routes from './pages/routes'
 import { Theme } from './type'
 
 function App() {
@@ -20,26 +20,6 @@ function App() {
         ...current,
         theme: currentTheme
       }))
-      /*switch (color) {
-        case ('blue'): {
-            currentTheme = themes.blue
-          break;
-        }
-        case ('green'): {
-            currentTheme = themes.green
-          break;
-        }
-        case ('red'): {
-            currentTheme = themes.red
-          break;
-        }
-        default:
-          return themes.blue
-      }
-      setContext(current => ({
-        ...current,
-        theme: currentTheme
-      }))*/
     }
     })
 

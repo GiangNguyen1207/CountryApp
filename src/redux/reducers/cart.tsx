@@ -4,12 +4,12 @@ import {
   ADD_COUNTRY,
   REMOVE_COUNTRY,
   TOGGLE_DRAWER,
+  SEND_TO_STORE,
 } from "../../type";
 
 const cartInitialState: CartState = {
   countryCart: [],
-  quantity: 0,
-  isOpen: false
+  isOpen: false,
 }
 
 const cartReducer = (state = cartInitialState, action: CountryActions): CartState => {
@@ -20,13 +20,11 @@ const cartReducer = (state = cartInitialState, action: CountryActions): CartStat
       if(addedCountry) {
         return {
           ...state,
-          quantity: state.quantity
         }
       } else {
         return {
           ...state,
           countryCart: [...state.countryCart, countryToAdd],
-          quantity: state.quantity + 1
         }
       }
 
@@ -35,7 +33,6 @@ const cartReducer = (state = cartInitialState, action: CountryActions): CartStat
     return {
        ...state, 
        countryCart: state.countryCart.filter(item => item.name !== countryToRemove.name),
-       quantity: state.quantity - 1
     }
     case TOGGLE_DRAWER: 
       const toggleDrawer = action.payload.isOpen 
@@ -43,6 +40,11 @@ const cartReducer = (state = cartInitialState, action: CountryActions): CartStat
       ...state,
       isOpen: toggleDrawer
     }
+    case SEND_TO_STORE: 
+      return {
+        ...state,
+        countryCart: action.payload.countries
+      }
     default:
     return state
   }

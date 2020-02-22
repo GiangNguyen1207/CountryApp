@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -10,13 +10,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import SearchIcon from '@material-ui/icons/Search';
-import _isEmpty from 'lodash/isEmpty'
 
 import SearchBar from '../SearchBar'
 import DrawerComponent from '../Drawer'
 import { AppState } from '../../type'
-import ThemeContext, { themes } from '../../Context/';
-import { toggleDrawerAction } from '../../redux/actions/Cart'
+import ThemeContext from '../../Context/';
+import { toggleDrawerAction } from '../../redux/actions/cart'
 
 type SearchProps = {
   input: string,
@@ -66,17 +65,7 @@ const AppBarComponent = ({ input, handler } : SearchProps) => {
   const classes = useStyles()
   const { theme, switchTheme } = useContext(ThemeContext)
 
-  const quantity = useSelector((state: AppState) => state.cart.quantity)
-
-  const localState = localStorage.getItem('cart')
-
-  let newQuantity: number
-  if(!_isEmpty(localState)) {
-    let data = JSON.parse(localState || '')
-    newQuantity = data.quantity
-  } else {
-    newQuantity = quantity
-  }
+  const quantity = useSelector((state: AppState) => state.cart.countryCart)
 
   const drawerStatus = useSelector((state: AppState) => state.cart.isOpen)
 
@@ -132,7 +121,7 @@ const AppBarComponent = ({ input, handler } : SearchProps) => {
         </div>
         <div className={classes.grow} />
         <IconButton color='inherit' edge="end">
-          <Badge badgeContent={newQuantity} color="secondary">
+          <Badge badgeContent={quantity.length} color="secondary">
             <ShoppingCartIcon onClick={() => dispatch(toggleDrawerAction(true))}/>
           </Badge>
         </IconButton>

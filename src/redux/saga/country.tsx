@@ -1,11 +1,32 @@
 import { select, takeLatest } from 'redux-saga/effects'
 
-import { AddCountry, ADD_COUNTRY, REMOVE_COUNTRY } from '../../type';
+import { 
+  FETCH_DATA_SUCCESS, 
+  FetchDataActions, 
+  AddCountry, 
+  ADD_COUNTRY,
+  RemoveCountry, 
+  REMOVE_COUNTRY
+} from '../../type';
 
-function* saveState(action: AddCountry) {
+function* saveStateWhenAddingCountry(action: AddCountry) {
     const state = yield select()
-    yield localStorage.setItem('Countries', JSON.stringify(state.product))
+    console.log('saga', state.cart)
     yield localStorage.setItem('cart', JSON.stringify(state.cart))
   }
 
-export default [takeLatest([ADD_COUNTRY, REMOVE_COUNTRY], saveState)]
+function* saveStateWhenFetchingData(action: FetchDataActions) {
+    const state = yield select()
+    yield localStorage.setItem('Countries', JSON.stringify(state.product.countries))
+  }
+
+function* saveStateWhenRemovingCountry(action: RemoveCountry) {
+    const state = yield select()
+    yield localStorage.setItem('cart', JSON.stringify(state.cart))
+  }
+
+export default [
+  takeLatest(ADD_COUNTRY, saveStateWhenAddingCountry), 
+  takeLatest(REMOVE_COUNTRY, saveStateWhenRemovingCountry), 
+  takeLatest(FETCH_DATA_SUCCESS, saveStateWhenFetchingData)
+]

@@ -1,43 +1,78 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles';
 import { useParams, useHistory } from 'react-router-dom'
-import { useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 
-import { AppState } from '../type';
+import { Country } from '../type';
 
-const CountryDetails = () => {
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+  },
+});
+
+const CountryDetails = (): any => {
+  const classes = useStyles()
   const history = useHistory()
   const { name } = useParams()
-  const countryList = useSelector((state: AppState) => state.product.countries)
-  const chosenCountries = countryList.filter(country => country.name === name)
+
+  const localCountryData = localStorage.getItem('Countries')
+  const countryList: Country[] = JSON.parse(localCountryData || '')
+
+  if(countryList) {
+    const chosenCountries = countryList.filter(country => country.name === name)
+
   return(
-    <>
-      {chosenCountries.map(country =>
-        <div key={country.name}>
-          <img src={country.flag} alt='Country flag' width='200px' />
-          <h1>{country.name}</h1>
-          <b>Languages: </b>
-           <span>{country.languages.map(lang => 
-            <li key={lang.name}>{lang.name}</li>
-          )}
-          </span><br />
-          <b>Population: </b>
-            <span>{country.population}</span><br />
-          <b>Region: </b>
-            <span>{country.region}</span><br />
+    <div>
+      {chosenCountries.map(country => (
+        <Card className={classes.root} style={{margin: '0 auto'}}>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              alt="Country Flag"
+              height="140"
+              image={country.flag}
+              title="Country Flag"
+            />
+          </CardActionArea>
+           <CardContent>
+            <Typography gutterBottom variant="h5" component="h1">
+              <b>
+              {country.name}
+              </b>
+            </Typography>
+            <Typography component="h3"><b>Languages: </b></Typography>
+              <span>{country.languages.map(lang => 
+                  <li key={lang.name}>{lang.name}</li>
+                  )}
+              </span><br />
+            <Typography component="h3"><b>Population: </b></Typography>
+              <span>{country.population}</span><br />
+            <Typography component="h3"><b>Region: </b></Typography>
+              <span>{country.region}</span><br />
+         <CardActions>
           <Button
-            variant="contained"
-            color="default"
-            startIcon={<ArrowBackIosIcon />}
-            onClick={()=>history.goBack()}
-          >
-            Back
-          </Button>
-        </div>
-      )}
-    </>
-  )
+              variant="contained"
+              color="default"
+              size='small'
+              startIcon={<ArrowBackIosIcon />}
+              onClick={()=>history.goBack()}
+            >
+              Back
+            </Button>
+         </CardActions>
+        </CardContent>
+      </Card>
+      ))}
+    </div>
+  )}
 }
 
 export default CountryDetails

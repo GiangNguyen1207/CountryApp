@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import _orderBy from 'lodash/orderBy'
 import Table from '@material-ui/core/Table'
 import TableHead from '@material-ui/core/TableHead'
 import TableBody from '@material-ui/core/TableBody'
+import _isEmpty from 'lodash/isEmpty'
 
-import fetchCountry from '../../redux/actions/Country'
+import fetchCountry from '../../redux/actions/country'
 import TableHeader from '../TableHeader'
 import TableRows from '../TableRows'
-import { AppState } from '../../type'
+import { Country } from '../../type'
 
 type Props = {
   input: string,
@@ -23,11 +24,15 @@ const CountryTable = ({ input, handleSort, isSorted, sortValue, takeName, nameDe
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(fetchCountry())
-  }, [])
+    if(_isEmpty(localCountryData)) {
+      dispatch(fetchCountry())
+    } 
+  },[])
 
-  const countryList = useSelector((state: AppState) => (state.product.countries))
+  const localCountryData = localStorage.getItem('Countries')
 
+  const countryList: Country[] = JSON.parse(localCountryData || '')
+  
   if(countryList) {
     const filterCountries = countryList.filter(country => 
       country.name.toLowerCase().indexOf(input.toLowerCase()) !== -1)

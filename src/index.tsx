@@ -7,13 +7,9 @@ import makeStore from './redux/store'
 
 const store = makeStore()
 
-/*const WithProvider = () => {
+ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>
-}*/
-
-ReactDOM.render(<Provider store={store}>
-  <App />
-</Provider>, document.getElementById('root'))
+  </Provider>, 
+  document.getElementById('root'))
 

@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux'
 import Button from '@material-ui/core/Button';
 import TableCell from '@material-ui/core/TableCell';
@@ -6,7 +7,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import { Country, Language, AppState } from '../../type'
 import Flag from '../Flag'
-import { addCountryToCart } from '../../redux/actions/Cart'
+import { addCountryToCart } from '../../redux/actions/cart'
 import ThemeContext from '../../Context'
 
 type Props = {
@@ -19,9 +20,19 @@ type Props = {
   takeName: (nameDetails: string) => void
 }
 
+const useStyles = makeStyles({
+  root: {
+    '&$disabled': {
+      background: 'rgba(0, 0, 0, 0.12)',
+    },
+  },
+  disabled: {},
+});
+
 const TableRows = ({ name, link, languages, population, region, takeName }: Props) => {
   const { theme } = useContext(ThemeContext)
   const dispatch = useDispatch()
+  const classes = useStyles()
 
   const handleAdd = () => {
     const country: Country = {
@@ -67,6 +78,8 @@ const TableRows = ({ name, link, languages, population, region, takeName }: Prop
           style={{backgroundColor: theme.forground, color: theme.color}}
           onClick={handleAdd}
           disabled={existed}
+          classes={{
+            disabled: classes.disabled}}
         >
           Add
         </Button> 
