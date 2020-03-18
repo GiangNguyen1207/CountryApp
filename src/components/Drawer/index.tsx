@@ -1,12 +1,12 @@
 import React from 'react'
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
-import Divider from '@material-ui/core/Divider';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles'
+import Drawer from '@material-ui/core/Drawer'
+import IconButton from '@material-ui/core/IconButton'
+import Divider from '@material-ui/core/Divider'
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
+import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 
-import ShoppingCart from '../ShoppingCart';
+import ShoppingCart from '../ShoppingCart'
 
 const drawerWidth = 240
 
@@ -41,10 +41,10 @@ const useStyles = makeStyles((theme: Theme) =>
       justifyContent: 'flex-start',
     },
   }),
-);
+)
 
 const RightDrawer = ({ open, toggleDrawer } : DrawerProps ) => {
-  const theme = useTheme();
+  const theme = useTheme()
   const classes = useStyles()
   
   return(
@@ -54,7 +54,7 @@ const RightDrawer = ({ open, toggleDrawer } : DrawerProps ) => {
       anchor="right"
       open={open}
       classes={{
-      paper: classes.drawerPaper,
+        paper: classes.drawerPaper,
       }}
     >
       <div className={classes.drawerHeader}>
@@ -63,7 +63,7 @@ const RightDrawer = ({ open, toggleDrawer } : DrawerProps ) => {
         </IconButton>
       </div>
       <Divider />
-        <ShoppingCart />
+      <ShoppingCart />
       <Divider />
     </Drawer>
   )

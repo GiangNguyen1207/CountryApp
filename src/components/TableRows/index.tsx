@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch, useSelector } from 'react-redux'
-import Button from '@material-ui/core/Button';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button'
+import TableCell from '@material-ui/core/TableCell'
+import TableRow from '@material-ui/core/TableRow'
 
 import { Country, Language, AppState } from '../../type'
 import Flag from '../Flag'
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
     },
   },
   disabled: {},
-});
+})
 
 const TableRows = ({ name, link, languages, population, region, takeName }: Props) => {
   const { theme } = useContext(ThemeContext)
