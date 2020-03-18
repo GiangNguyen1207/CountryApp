@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 
-import { Country, Language, AppState } from '../../type'
-import Flag from '../Flag'
-import { addCountryToCart } from '../../redux/actions/cart'
-import ThemeContext from '../../Context'
+import { Country, Language, AppState } from '../../type';
+import Flag from '../Flag';
+import { addCountryToCart } from '../../redux/actions/cart';
+import ThemeContext from '../../Context';
 
 type Props = {
   name: string,
