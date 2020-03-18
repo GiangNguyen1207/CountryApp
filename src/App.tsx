@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import ThemeContext, { themes } from './Context';
+import ThemeContext, { themes } from './Context'
 import Routes from './pages/routes'
 import { Theme } from './type'
 
@@ -21,7 +21,7 @@ function App() {
         theme: currentTheme
       }))
     }
-    })
+  })
 
   return (
     <>

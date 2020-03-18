@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { InputBase } from '@material-ui/core';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { InputBase } from '@material-ui/core'
 
 type Props = {
   input: string,

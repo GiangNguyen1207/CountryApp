@@ -1,10 +1,10 @@
-export const ADD_COUNTRY = 'ADD_COUNTRY';
-export const REMOVE_COUNTRY = 'REMOVE_COUNTRY';
-export const FETCH_DATA_BEGIN = 'FETCH_DATA_BEGIN';
-export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
-export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
-export const TOGGLE_DRAWER = 'TOGGLE_DRAWER';
-export const SEND_TO_STORE = 'SEND_TO_STORE';
+export const ADD_COUNTRY = 'ADD_COUNTRY'
+export const REMOVE_COUNTRY = 'REMOVE_COUNTRY'
+export const FETCH_DATA_BEGIN = 'FETCH_DATA_BEGIN'
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS'
+export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE'
+export const TOGGLE_DRAWER = 'TOGGLE_DRAWER'
+export const SEND_TO_STORE = 'SEND_TO_STORE'
 
 export type Language = {
   name: string

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
+import IconButton from '@material-ui/core/IconButton'
+import DeleteIcon from '@material-ui/icons/Delete'
+import ListItem from '@material-ui/core/ListItem'
+import List from '@material-ui/core/List'
 import _isEmpty from 'lodash/isEmpty'
 
-import { removeCountryFromCart, sendLocalStorageToStore } from '../../redux/actions/cart';
+import { removeCountryFromCart, sendLocalStorageToStore } from '../../redux/actions/cart'
 import { AppState } from '../../type'
 
 const ShoppingCart = () => {

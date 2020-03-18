@@ -25,8 +25,8 @@ const TableHeader = ({ handleSort, isSorted, sortValue }: Props) => {
               (isSorted ? (
                 <ArrowUpwardIcon />
               ) : (
-                  <ArrowDownwardIcon />
-                )
+                <ArrowDownwardIcon />
+              )
               )}
           </div>
         </TableCell>

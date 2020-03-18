@@ -1,4 +1,4 @@
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux'
 
 import {
   Country,
@@ -36,12 +36,12 @@ export function fetchCountryFailure(error: string) : FetchDataFailure {
 
 export default function fetchCountry() {
   return(dispatch: Dispatch) => {
-      dispatch(fetchCountryBegin())
-        return fetch(`https://restcountries.eu/rest/v2/all`)
-          .then(res => res.json())
-          .then(data => {
-            return dispatch(fetchCountrySuccess(data))
-          })
-          .catch(error => fetchCountryFailure(error))
+    dispatch(fetchCountryBegin())
+    return fetch('https://restcountries.eu/rest/v2/all')
+      .then(res => res.json())
+      .then(data => {
+        return dispatch(fetchCountrySuccess(data))
+      })
+      .catch(error => fetchCountryFailure(error))
   }
 }

@@ -1,6 +1,6 @@
 import { select, put, takeLatest } from 'redux-saga/effects'
 
-import { REMOVE_COUNTRY } from '../../type';
+import { REMOVE_COUNTRY } from '../../type'
 import { toggleDrawerAction } from '../actions/cart'
 
 function* hideDrawer() {

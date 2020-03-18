@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router'
 
 import AppBarComponent from '../components/AppBar'
-import CountryTable from '../components/CountryTable';
+import CountryTable from '../components/CountryTable'
 
 const Homepage = () => {
   const history = useHistory()
@@ -27,17 +27,17 @@ const Homepage = () => {
   return (
     <div>
       <AppBarComponent
-          input={input}
-          handler={searchHandler}
-        />
+        input={input}
+        handler={searchHandler}
+      />
       <CountryTable 
-          input={input}
-          handleSort={handleSort}
-          isSorted={isSorted}
-          sortValue={sortValue}
-          takeName={takeName}
-          nameDetails={nameDetails}
-        />
+        input={input}
+        handleSort={handleSort}
+        isSorted={isSorted}
+        sortValue={sortValue}
+        takeName={takeName}
+        nameDetails={nameDetails}
+      />
     </div>
   )
 }
