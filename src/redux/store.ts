@@ -13,7 +13,7 @@ const initState: AppState = {
   },
   cart: {
     countryCart: [],
-    isOpen: false
+    isOpen: false,
   },
 };
 

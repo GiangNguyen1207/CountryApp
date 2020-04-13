@@ -51,13 +51,11 @@ const cartReducer = (
       isOpen: toggleDrawer,
     };
   }
-  case SEND_TO_STORE: {
+  case SEND_TO_STORE:
     return {
       ...state,
       countryCart: action.payload.countries,
     };
-  }
-
   default:
     return state;
   }
