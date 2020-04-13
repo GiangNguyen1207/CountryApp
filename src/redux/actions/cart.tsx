@@ -7,15 +7,15 @@ import {
   ToggleDrawer,
   TOGGLE_DRAWER,
   SEND_TO_STORE,
-} from '../../type'
+} from '../../type';
 
 export function addCountryToCart(country: Country): AddCountry {
   return {
     type: ADD_COUNTRY,
     payload: {
       country,
-    }
-  }
+    },
+  };
 }
 
 export function removeCountryFromCart(country: Country): RemoveCountry {
@@ -23,24 +23,24 @@ export function removeCountryFromCart(country: Country): RemoveCountry {
     type: REMOVE_COUNTRY,
     payload: {
       country,
-    }
-  }
+    },
+  };
 }
 
-export function toggleDrawerAction(isOpen: boolean) : ToggleDrawer {
+export function toggleDrawerAction(isOpen: boolean): ToggleDrawer {
   return {
     type: TOGGLE_DRAWER,
     payload: {
-      isOpen
-    }
-  }
+      isOpen,
+    },
+  };
 }
 
 export function sendLocalStorageToStore(countries: Country[]) {
   return {
     type: SEND_TO_STORE,
     payload: {
-      countries
-    }
-  }
+      countries,
+    },
+  };
 }

@@ -1,5 +1,10 @@
-import React from 'react'
-import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import React from 'react';
+import {
+  makeStyles,
+  useTheme,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
@@ -8,12 +13,12 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 import ShoppingCart from '../ShoppingCart';
 
-const drawerWidth = 240
+const drawerWidth = 240;
 
 type DrawerProps = {
-  open: boolean,
-  toggleDrawer: () => void
-}
+  open: boolean;
+  toggleDrawer: () => void;
+};
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -40,33 +45,37 @@ const useStyles = makeStyles((theme: Theme) =>
       ...theme.mixins.toolbar,
       justifyContent: 'flex-start',
     },
-  }),
+  })
 );
 
-const RightDrawer = ({ open, toggleDrawer } : DrawerProps ) => {
+const RightDrawer = ({ open, toggleDrawer }: DrawerProps) => {
   const theme = useTheme();
-  const classes = useStyles()
-  
-  return(
+  const classes = useStyles();
+
+  return (
     <Drawer
       className={classes.drawer}
       variant="persistent"
       anchor="right"
       open={open}
       classes={{
-      paper: classes.drawerPaper,
+        paper: classes.drawerPaper,
       }}
     >
       <div className={classes.drawerHeader}>
         <IconButton onClick={toggleDrawer}>
-          {theme.direction === 'rtl' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+          {theme.direction === 'rtl' ? (
+            <ChevronLeftIcon />
+          ) : (
+            <ChevronRightIcon />
+          )}
         </IconButton>
       </div>
       <Divider />
-        <ShoppingCart />
+      <ShoppingCart />
       <Divider />
     </Drawer>
-  )
-}
+  );
+};
 
-export default RightDrawer
+export default RightDrawer;

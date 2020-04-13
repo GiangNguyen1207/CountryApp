@@ -1,6 +1,11 @@
 import React, { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fade, makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import {
+  fade,
+  makeStyles,
+  Theme,
+  createStyles,
+} from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,20 +16,19 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import SearchIcon from '@material-ui/icons/Search';
 
-import SearchBar from '../SearchBar'
-import DrawerComponent from '../Drawer'
-import { AppState } from '../../type'
+import SearchBar from '../SearchBar';
+import DrawerComponent from '../Drawer';
+import { AppState } from '../../type';
 import ThemeContext from '../../Context/';
-import { toggleDrawerAction } from '../../redux/actions/cart'
+import { toggleDrawerAction } from '../../redux/actions/cart';
 
 type SearchProps = {
-  input: string,
-  handler: (event: React.ChangeEvent<HTMLInputElement>) => void,
-}
+  input: string;
+  handler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    
     grow: {
       flexGrow: 1,
     },
@@ -57,19 +61,19 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       justifyContent: 'center',
     },
-  }),
+  })
 );
 
-const AppBarComponent = ({ input, handler } : SearchProps) => {
-  const dispatch = useDispatch()
-  const classes = useStyles()
-  const { theme, switchTheme } = useContext(ThemeContext)
+const AppBarComponent = ({ input, handler }: SearchProps) => {
+  const dispatch = useDispatch();
+  const classes = useStyles();
+  const { theme, switchTheme } = useContext(ThemeContext);
 
-  const quantity = useSelector((state: AppState) => state.cart.countryCart)
+  const quantity = useSelector((state: AppState) => state.cart.countryCart);
 
-  const drawerStatus = useSelector((state: AppState) => state.cart.isOpen)
+  const drawerStatus = useSelector((state: AppState) => state.cart.isOpen);
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -77,21 +81,21 @@ const AppBarComponent = ({ input, handler } : SearchProps) => {
 
   const handleClose = () => {
     setAnchorEl(null);
-  }
+  };
 
-  return (    
-  <div className={classes.grow}>
-    <AppBar position="static" style={{backgroundColor: theme.forground}}>
-      <Toolbar>
-        <IconButton
-          edge="start"
-          className={classes.menuButton}
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleClick}
-        >
-          <MenuIcon/>
-        </IconButton>
+  return (
+    <div className={classes.grow}>
+      <AppBar position="static" style={{ backgroundColor: theme.forground }}>
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleClick}
+          >
+            <MenuIcon />
+          </IconButton>
           <Menu
             id="simple-menu"
             anchorEl={anchorEl}
@@ -99,40 +103,40 @@ const AppBarComponent = ({ input, handler } : SearchProps) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            {['Blue', 'Green', 'Red'].map(color => {
-              return(
-              <MenuItem 
-                style={{backgroundColor: color, color: 'white'}}
-                key={color} 
-                onClick={()=>switchTheme(color)}
-              >{color}
-              </MenuItem>
-              )
+            {['Blue', 'Green', 'Red'].map((color) => {
+              return (
+                <MenuItem
+                  style={{ backgroundColor: color, color: 'white' }}
+                  key={color}
+                  onClick={() => switchTheme(color)}
+                >
+                  {color}
+                </MenuItem>
+              );
             })}
           </Menu>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <SearchBar input={input} handler={handler} />
           </div>
-          <SearchBar 
-            input={input}
-            handler={handler}
-          />
-        </div>
-        <div className={classes.grow} />
-        <IconButton color='inherit' edge="end">
-          <Badge badgeContent={quantity.length} color="secondary">
-            <ShoppingCartIcon onClick={() => dispatch(toggleDrawerAction(true))}/>
-          </Badge>
-        </IconButton>
-      </Toolbar>
-    </AppBar>
-    <DrawerComponent 
-      open={drawerStatus}
-      toggleDrawer={() => dispatch(toggleDrawerAction(false))}
-    />
-  </div>
-  )
-}
+          <div className={classes.grow} />
+          <IconButton color="inherit" edge="end">
+            <Badge badgeContent={quantity.length} color="secondary">
+              <ShoppingCartIcon
+                onClick={() => dispatch(toggleDrawerAction(true))}
+              />
+            </Badge>
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <DrawerComponent
+        open={drawerStatus}
+        toggleDrawer={() => dispatch(toggleDrawerAction(false))}
+      />
+    </div>
+  );
+};
 
-export default AppBarComponent
+export default AppBarComponent;

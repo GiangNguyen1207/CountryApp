@@ -1,4 +1,4 @@
-import { Dispatch } from "redux";
+import { Dispatch } from 'redux';
 
 import {
   Country,
@@ -7,41 +7,43 @@ import {
   FETCH_DATA_FAILURE,
   FetchDataBegin,
   FetchDataSuccess,
-  FetchDataFailure
-} from '../../type'
+  FetchDataFailure,
+} from '../../type';
 
-export function fetchCountryBegin() : FetchDataBegin {
+export function fetchCountryBegin(): FetchDataBegin {
   return {
-    type: FETCH_DATA_BEGIN
-  }
+    type: FETCH_DATA_BEGIN,
+  };
 }
 
-export function fetchCountrySuccess(fetchCountries: Country[]) : FetchDataSuccess {
+export function fetchCountrySuccess(
+  fetchCountries: Country[]
+): FetchDataSuccess {
   return {
     type: FETCH_DATA_SUCCESS,
     payload: {
-      fetchCountries
-    }
-  }
+      fetchCountries,
+    },
+  };
 }
 
-export function fetchCountryFailure(error: string) : FetchDataFailure {
+export function fetchCountryFailure(error: string): FetchDataFailure {
   return {
     type: FETCH_DATA_FAILURE,
     payload: {
-      error
-    }
-  }
+      error,
+    },
+  };
 }
 
 export default function fetchCountry() {
-  return(dispatch: Dispatch) => {
-      dispatch(fetchCountryBegin())
-        return fetch(`https://restcountries.eu/rest/v2/all`)
-          .then(res => res.json())
-          .then(data => {
-            return dispatch(fetchCountrySuccess(data))
-          })
-          .catch(error => fetchCountryFailure(error))
-  }
+  return (dispatch: Dispatch) => {
+    dispatch(fetchCountryBegin());
+    return fetch('https://restcountries.eu/rest/v2/all')
+      .then((res) => res.json())
+      .then((data) => {
+        return dispatch(fetchCountrySuccess(data));
+      })
+      .catch((error) => fetchCountryFailure(error));
+  };
 }
