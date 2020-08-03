@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import { InputBase } from '@material-ui/core'
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { InputBase } from '@material-ui/core';
 
 type Props = {
-  input: string,
-  handler: (event: React.ChangeEvent<HTMLInputElement>) => void
-}
+  input: string;
+  handler: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,12 +20,12 @@ const useStyles = makeStyles((theme: Theme) =>
       [theme.breakpoints.up('md')]: {
         width: 200,
       },
-    }
+    },
   })
-)
+);
 
 const SearchInput = ({ input, handler }: Props) => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <>
       <InputBase
@@ -33,12 +33,12 @@ const SearchInput = ({ input, handler }: Props) => {
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
-        value={input} 
-        placeholder='search'
-        onChange={handler} 
+        value={input}
+        placeholder="search"
+        onChange={handler}
       />
     </>
-  )
-}
+  );
+};
 
-export default SearchInput
+export default SearchInput;
