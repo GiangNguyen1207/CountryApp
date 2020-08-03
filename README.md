@@ -20,21 +20,39 @@ $ npm --version
 6.5.0
 ```
 
+### Running the app
+
+Clone the repository 
+```
+$ git clone git@github.com:GiangNguyen1207/CountryApp.git
+```
+
+Build Docker image: 
+```
+make image
+```
+
+Run Docker image: 
+```
+make server
+```
+The app is running on Port 3003. It is also possible to change the port. 
+
 ### Installing
 
 Clone the repository 
 ```
-$ git@github.com:GiangNguyen1207/CountryApp.git
+$ git clone git@github.com:GiangNguyen1207/CountryApp.git
 ```
 
 Install all the dependencies
 ```
-$ npm install
+$ yarn
 ```
 
 Run the project
 ```
-$ npm start
+$ yarn start
 ```
 
 ## Language and tools
