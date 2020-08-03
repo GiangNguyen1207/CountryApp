@@ -32,7 +32,7 @@ Build Docker image:
 make image
 ```
 
-Run Docker image: 
+Run Docker: 
 ```
 make server
 ```
